@@ -12,7 +12,7 @@ class Pacman {
     this.dir = direction;
     switch (direction) {
       case 'right':
-        if (this.stage.withinBorders(this.xpos + 1)) {
+        if (this.stage.withinBorders(this.xpos + 1, this.ypos) && this.stage.collisionDetection(this.xpos + 1, this.ypos) !== 'wall') {
           this.xpos += 1;
           this.mouth = !this.mouth;
         } else {
@@ -20,7 +20,7 @@ class Pacman {
         }
         break;
       case 'left':
-        if (this.stage.withinBorders(this.xpos - 1)) {
+        if (this.stage.withinBorders(this.xpos - 1, this.ypos) && this.stage.collisionDetection(this.xpos - 1, this.ypos) !== 'wall') {
           this.xpos -= 1;
           this.mouth = !this.mouth;
         } else {
@@ -28,7 +28,7 @@ class Pacman {
         }
         break;
       case 'up':
-        if (this.stage.withinBorders(this.ypos - 1)) {
+        if (this.stage.withinBorders(this.xpos, this.ypos - 1) && this.stage.collisionDetection(this.xpos, this.ypos - 1) !== 'wall') {
           this.ypos -= 1;
           this.mouth = !this.mouth;
         } else {
@@ -36,7 +36,7 @@ class Pacman {
         }
         break;
       case 'down':
-        if (this.stage.withinBorders(this.ypos + 1)) {
+        if (this.stage.withinBorders(this.xpos, this.ypos + 1) && this.stage.collisionDetection(this.xpos, this.ypos + 1) !== 'wall') {
           this.ypos += 1;
           this.mouth = !this.mouth;
         } else {

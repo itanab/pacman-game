@@ -7,14 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
   jayne.mount(stage.element);
 
 
-  const apple = new Entity(0, 4, 'apple');
-  apple.mount(stage);
+  const wall2 = new Entity(0, 4, 'wall');
+  wall2.mount(stage);
 
   const wall = new Entity(5, 8, 'wall');
   wall.mount(stage);
 
-  const bomb = new Entity(8, 9, 'bomb');
-  bomb.mount(stage);
+  const wall3 = new Entity(8, 9, 'wall');
+  wall3.mount(stage);
 
   document.addEventListener('keydown', (event) => {
     if (event.code === 'ArrowRight') {

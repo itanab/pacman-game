@@ -34,4 +34,13 @@ class Stage {
     }
     return true;
   }
+
+  collisionDetection(x, y) {
+    for (const entity of this.entities) {
+      if (entity.x === x && entity.y === y) {
+        return entity.type;
+      }
+    }
+    return null;
+  }
 }
