@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const stage = document.querySelector('#stage');
-  const jayne = new Pacman(425, 425);
+  const container = document.querySelector('.container');
+  const field = new Stage(10, 10);
+  field.mount(container);
+
+  const stage = document.querySelector('.stage');
+  const jayne = new Pacman(0, 3, field);
   jayne.mount(stage);
 
   document.addEventListener('keydown', (event) => {

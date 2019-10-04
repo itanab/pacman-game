@@ -1,9 +1,10 @@
 
 class Pacman {
-  constructor(xpos, ypos) {
+  constructor(xpos, ypos, stage) {
     this.xpos = xpos;
     this.ypos = ypos;
     this.mouth = true;
+    this.stage = stage;
     this.dir = 'right';
   }
 
@@ -11,20 +12,37 @@ class Pacman {
     this.dir = direction;
     switch (direction) {
       case 'right':
-        this.xpos += 85;
-        this.mouth = !this.mouth;
+        if (this.stage.withinBorders(this.xpos + 1)) {
+          this.xpos += 1;
+          this.mouth = !this.mouth;
+        } else {
+          this.mouth = !this.mouth;
+        }
         break;
       case 'left':
-        this.xpos -= 85;
-        this.mouth = !this.mouth;
+        if (this.stage.withinBorders(this.xpos - 1)) {
+          this.xpos -= 1;
+          this.mouth = !this.mouth;
+        } else {
+          this.mouth = !this.mouth;
+        }
         break;
       case 'up':
-        this.ypos -= 85;
-        this.mouth = !this.mouth;
+        if (this.stage.withinBorders(this.ypos - 1)) {
+          this.ypos -= 1;
+          this.mouth = !this.mouth;
+        } else {
+          this.mouth = !this.mouth;
+        }
         break;
       case 'down':
-        this.ypos += 85;
-        this.mouth = !this.mouth;
+        if (this.stage.withinBorders(this.ypos + 1)) {
+          this.ypos += 1;
+          this.mouth = !this.mouth;
+        } else {
+          this.mouth = !this.mouth;
+        }
+
         break;
 
       default:
@@ -33,10 +51,11 @@ class Pacman {
 
   render() {
     this.element = document.createElement('div');
-    this.element.className = 'container';
+    this.element.className = 'pacman';
     this.element.innerHTML = (
       '<div class="entity entity--pac pacgirl-active-light">Jayne</div>'
     );
+    this.update();
   }
 
   mount(parent) {
@@ -47,8 +66,8 @@ class Pacman {
   update() {
     const pacman = this.element.querySelector('.entity');
 
-    pacman.style.left = `${this.xpos}px`;
-    pacman.style.top = `${this.ypos}px`;
+    pacman.style.left = `${this.xpos * 85}px`;
+    pacman.style.top = `${this.ypos * 85}px`;
 
 
     if (this.mouth) {
