@@ -1,23 +1,24 @@
-let xpos=0;
-let opened=true;
+const jayne = new Pacman(0);
+
+const update = () => {
+  const pacman = document.querySelector('.entity');
+
+  pacman.style.left = `${jayne.xpos}px`;
+
+  if (jayne.mouth) {
+    pacman.style.backgroundPositionX = '0px';
+  } else {
+    pacman.style.backgroundPositionX = '85px';
+  }
+};
 
 document.addEventListener('DOMContentLoaded', () => {
- 
-  document.addEventListener('keydown', (event)=>{
-    const pacman = document.querySelector('.entity');
-    
-    if(event.code === 'ArrowRight'){
-    
-      if (opened){
-         pacman.style.backgroundPositionX="0px";
-         opened=false;
-      }else{
-        pacman.style.backgroundPositionX="85px";
-        opened=true;
-      }
-      xpos+=85;
-      pacman.style.left=`${xpos}px`;   
+  update();
+
+  document.addEventListener('keydown', (event) => {
+    if (event.code === 'ArrowRight') {
+      jayne.moveRight();
+      update();
     }
-    
   });
 });
