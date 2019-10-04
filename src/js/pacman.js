@@ -64,7 +64,7 @@ class Pacman {
   }
 
   update() {
-    const pacman = this.element.querySelector('.entity');
+    const pacman = this.element.querySelector('.entity--pac');
 
     pacman.style.left = `${this.xpos * 85}px`;
     pacman.style.top = `${this.ypos * 85}px`;

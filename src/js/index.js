@@ -1,11 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.querySelector('.container');
-  const field = new Stage(10, 10);
-  field.mount(container);
+  const stage = new Stage(10, 10);
+  stage.mount(container);
 
-  const stage = document.querySelector('.stage');
-  const jayne = new Pacman(0, 3, field);
-  jayne.mount(stage);
+  const jayne = new Pacman(0, 3, stage);
+  jayne.mount(stage.element);
+
+
+  const apple = new Entity(0, 4, 'apple');
+  apple.mount(stage);
+
+  const wall = new Entity(5, 8, 'wall');
+  wall.mount(stage);
+
+  const bomb = new Entity(8, 9, 'bomb');
+  bomb.mount(stage);
 
   document.addEventListener('keydown', (event) => {
     if (event.code === 'ArrowRight') {
